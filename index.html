@@ -1,21 +1,19 @@
 <!doctype html>
-<html lang="en">
+<html lang="vi">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Periodic Quest: Period 1-3</title>
-    <meta name="description" content="Interactive educational chemistry game for mastering elements 1 to 18 (H to Ar) in the Periodic Table." />
-    <meta property="og:title" content="Periodic Quest: Period 1-3" />
-    <meta property="og:description" content="Interactive educational chemistry game for mastering elements 1 to 18 (H to Ar) in the Periodic Table." />
+    <title>Periodic Quest: Period 1-3 | Chinh Phục Bảng Tuần Hoàn</title>
+    <meta name="description" content="Mini-game tương tác học tập và ghi nhớ vị trí, tính chất các nguyên tố Hóa học Chu kỳ 1, 2, 3 (Nguyên tố 1 đến 18: H đến Ar)." />
+    <meta property="og:title" content="Periodic Quest: Period 1-3 | Chinh Phục Bảng Tuần Hoàn" />
+    <meta property="og:description" content="Mini-game tương tác học tập và ghi nhớ vị trí, tính chất các nguyên tố Hóa học Chu kỳ 1, 2, 3 (Nguyên tố 1 đến 18: H đến Ar)." />
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
       :root {
         --bg-main: #090d16;
+        --bg-surface: #0f172a;
         --bg-card: rgba(22, 30, 49, 0.85);
         --bg-card-hover: rgba(30, 41, 68, 0.95);
         --border-subtle: rgba(255, 255, 255, 0.08);
@@ -24,7 +22,7 @@
         --text-secondary: #94a3b8;
         --text-muted: #64748b;
         
-        /* Family color accents */
+        /* Bảng màu phân loại họ nguyên tố */
         --fam-alkali: #f43f5e;
         --fam-alkaline-earth: #f59e0b;
         --fam-post-trans: #06b6d4;
@@ -43,7 +41,7 @@
       }
 
       body {
-        font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
         background-color: var(--bg-main);
         background-image: 
           radial-gradient(ellipse 80% 50% at 50% -20%, rgba(56, 189, 248, 0.12), transparent),
@@ -57,16 +55,17 @@
       }
 
       .font-mono, .tabular-nums {
-        font-family: 'JetBrains Mono', monospace;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
         font-variant-numeric: tabular-nums;
       }
 
-      /* 1. Header */
+      /* 1. Header Navigation */
       header {
         height: 64px;
         border-bottom: 1px solid var(--border-subtle);
-        background: rgba(9, 13, 22, 0.88);
+        background: rgba(9, 13, 22, 0.9);
         backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -83,24 +82,23 @@
       }
 
       .brand-icon {
-        width: 34px;
-        height: 34px;
+        width: 36px;
+        height: 36px;
         background: linear-gradient(135deg, #0284c7, #9333ea);
         border-radius: 8px;
         display: flex;
         align-items: center;
         justify-content: center;
         font-weight: 800;
-        font-size: 15px;
-        letter-spacing: -0.5px;
+        font-size: 18px;
         color: #fff;
         box-shadow: 0 0 16px rgba(56, 189, 248, 0.35);
       }
 
       .brand-title {
-        font-size: 18px;
+        font-size: 17px;
         font-weight: 700;
-        letter-spacing: -0.4px;
+        letter-spacing: -0.3px;
         color: #fff;
         display: flex;
         align-items: center;
@@ -121,7 +119,7 @@
         display: flex;
         align-items: center;
         gap: 20px;
-        background: rgba(22, 30, 49, 0.6);
+        background: rgba(22, 30, 49, 0.65);
         border: 1px solid var(--border-subtle);
         border-radius: 999px;
         padding: 6px 18px;
@@ -195,7 +193,7 @@
         box-shadow: 0 0 16px rgba(2, 132, 199, 0.55);
       }
 
-      /* Ribbon Controls */
+      /* 2. Ribbon & Legend */
       .ribbon {
         padding: 10px 24px;
         display: flex;
@@ -204,12 +202,12 @@
         flex-wrap: wrap;
         gap: 14px;
         border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        background: rgba(15, 23, 42, 0.4);
+        background: rgba(15, 23, 42, 0.45);
       }
 
       .difficulty-tabs {
         display: flex;
-        background: rgba(15, 23, 42, 0.8);
+        background: rgba(15, 23, 42, 0.85);
         border: 1px solid var(--border-subtle);
         padding: 3px;
         border-radius: 8px;
@@ -236,7 +234,7 @@
       .family-legend {
         display: flex;
         align-items: center;
-        gap: 12px;
+        gap: 10px;
         flex-wrap: wrap;
       }
 
@@ -247,14 +245,16 @@
         font-size: 11px;
         color: var(--text-secondary);
         cursor: pointer;
-        padding: 3px 6px;
-        border-radius: 4px;
+        padding: 4px 8px;
+        border-radius: 5px;
+        border: 1px solid transparent;
         transition: all 0.15s ease;
       }
 
       .legend-item:hover, .legend-item.active {
         color: #fff;
-        background: rgba(255, 255, 255, 0.06);
+        background: rgba(255, 255, 255, 0.08);
+        border-color: rgba(255, 255, 255, 0.15);
       }
 
       .legend-dot {
@@ -263,19 +263,19 @@
         border-radius: 2px;
       }
 
-      /* Main Game Canvas */
+      /* 3. Main Board Canvas */
       main {
         flex: 1;
-        padding: 20px 24px;
+        padding: 18px 24px;
         max-width: 1440px;
         margin: 0 auto;
         width: 100%;
         display: flex;
         flex-direction: column;
-        gap: 16px;
+        gap: 14px;
       }
 
-      /* Hint Callout / Live Status */
+      /* Hint Callout */
       .hint-bar {
         background: rgba(22, 30, 49, 0.7);
         border: 1px solid var(--border-subtle);
@@ -292,24 +292,25 @@
 
       .hint-bar.hint-error {
         border-left-color: #ef4444;
-        background: rgba(239, 68, 68, 0.08);
+        background: rgba(239, 68, 68, 0.1);
       }
 
       .hint-bar.hint-success {
         border-left-color: #10b981;
-        background: rgba(16, 185, 129, 0.08);
+        background: rgba(16, 185, 129, 0.1);
       }
 
       .hint-text {
         font-size: 13px;
         color: #e2e8f0;
+        line-height: 1.4;
       }
 
       .hint-text strong {
         color: #38bdf8;
       }
 
-      /* Board Container */
+      /* 18-Column Grid */
       .table-wrapper {
         width: 100%;
         overflow-x: auto;
@@ -329,12 +330,11 @@
 
       .periodic-grid {
         display: grid;
-        grid-template-columns: 44px repeat(18, minmax(62px, 1fr));
+        grid-template-columns: 46px repeat(18, minmax(62px, 1fr));
         grid-gap: 7px;
-        min-width: 1180px;
+        min-width: 1200px;
       }
 
-      /* Headers */
       .corner-cell {
         display: flex;
         align-items: center;
@@ -352,7 +352,7 @@
         align-items: center;
         justify-content: center;
         padding: 6px 2px;
-        background: rgba(15, 23, 42, 0.45);
+        background: rgba(15, 23, 42, 0.5);
         border: 1px solid rgba(255, 255, 255, 0.04);
         border-radius: 6px;
         font-size: 11px;
@@ -369,11 +369,11 @@
       }
 
       .col-header.highlight {
-        background: rgba(56, 189, 248, 0.16);
+        background: rgba(56, 189, 248, 0.18);
         border-color: rgba(56, 189, 248, 0.5);
         color: #38bdf8;
         transform: translateY(-2px);
-        box-shadow: 0 0 10px rgba(56, 189, 248, 0.25);
+        box-shadow: 0 0 12px rgba(56, 189, 248, 0.25);
       }
 
       .row-header {
@@ -381,7 +381,7 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        background: rgba(15, 23, 42, 0.45);
+        background: rgba(15, 23, 42, 0.5);
         border: 1px solid rgba(255, 255, 255, 0.04);
         border-radius: 6px;
         font-size: 11px;
@@ -396,11 +396,11 @@
       }
 
       .row-header.highlight {
-        background: rgba(56, 189, 248, 0.16);
+        background: rgba(56, 189, 248, 0.18);
         border-color: rgba(56, 189, 248, 0.5);
         color: #38bdf8;
         transform: translateX(-2px);
-        box-shadow: 0 0 10px rgba(56, 189, 248, 0.25);
+        box-shadow: 0 0 12px rgba(56, 189, 248, 0.25);
       }
 
       /* Empty Slot Tile */
@@ -433,7 +433,7 @@
 
       .slot-subhint {
         font-size: 9px;
-        color: rgba(148, 163, 184, 0.6);
+        color: rgba(148, 163, 184, 0.65);
         margin-top: 3px;
         pointer-events: none;
       }
@@ -482,8 +482,8 @@
         justify-content: space-between;
         padding: 0 24px;
         border-radius: 8px;
-        background: rgba(15, 23, 42, 0.2);
-        border: 1px dashed rgba(255, 255, 255, 0.05);
+        background: rgba(15, 23, 42, 0.25);
+        border: 1px dashed rgba(255, 255, 255, 0.06);
       }
 
       .trend-item {
@@ -578,7 +578,7 @@
         text-align: center;
       }
 
-      /* Animations for Placed / Shake */
+      /* Animations */
       .placed-ripple {
         position: absolute;
         inset: -2px;
@@ -615,13 +615,12 @@
         80% { transform: translateX(4px); }
       }
 
-      /* Flying floating points popup */
       .floating-score {
         position: absolute;
         top: 20%;
         left: 50%;
         transform: translate(-50%, -50%);
-        font-size: 16px;
+        font-size: 15px;
         font-weight: 800;
         color: #10b981;
         text-shadow: 0 0 8px rgba(16, 185, 129, 0.6);
@@ -637,12 +636,13 @@
         100% { opacity: 0; transform: translate(-50%, -36px) scale(1); }
       }
 
-      /* Dock / Hand Area at Bottom */
+      /* 4. Bottom Hand / Deck Dock */
       .deck-dock {
         position: sticky;
         bottom: 0;
-        background: rgba(9, 13, 22, 0.94);
+        background: rgba(9, 13, 22, 0.95);
         backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
         border-top: 1px solid var(--border-subtle);
         padding: 14px 24px 18px 24px;
         z-index: 30;
@@ -662,7 +662,7 @@
         display: flex;
         flex-direction: column;
         gap: 4px;
-        min-width: 180px;
+        min-width: 170px;
       }
 
       .deck-title {
@@ -674,12 +674,6 @@
         display: flex;
         align-items: center;
         gap: 8px;
-      }
-
-      .deck-counter {
-        font-size: 18px;
-        font-weight: 800;
-        color: #fff;
       }
 
       .deck-progress-bar {
@@ -706,8 +700,8 @@
 
       /* Hand Card */
       .hand-card {
-        width: 106px;
-        height: 124px;
+        width: 108px;
+        height: 126px;
         border-radius: 10px;
         padding: 8px 9px;
         background: var(--bg-card);
@@ -754,7 +748,7 @@
       }
 
       .hand-badge-tag {
-        font-size: 8px;
+        font-size: 9px;
         font-weight: 600;
         text-align: center;
         color: var(--card-color, #38bdf8);
@@ -769,12 +763,13 @@
         gap: 10px;
       }
 
-      /* Inspector / Detail Modal */
+      /* 5. Modals */
       .modal-backdrop {
         position: fixed;
         inset: 0;
-        background: rgba(0, 0, 0, 0.75);
+        background: rgba(0, 0, 0, 0.78);
         backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -795,7 +790,7 @@
         border: 1px solid rgba(255, 255, 255, 0.15);
         border-radius: 16px;
         width: 100%;
-        max-width: 580px;
+        max-width: 600px;
         box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
         overflow: hidden;
         display: flex;
@@ -840,11 +835,11 @@
       }
 
       .modal-body {
-        padding: 24px;
+        padding: 22px 24px;
         display: flex;
         flex-direction: column;
-        gap: 20px;
-        max-height: 80vh;
+        gap: 18px;
+        max-height: 82vh;
         overflow-y: auto;
       }
 
@@ -852,7 +847,7 @@
         display: flex;
         align-items: center;
         gap: 24px;
-        background: rgba(15, 23, 42, 0.6);
+        background: rgba(15, 23, 42, 0.65);
         border: 1px solid var(--border-subtle);
         border-radius: 12px;
         padding: 16px;
@@ -876,13 +871,13 @@
       .atom-quick-info {
         display: flex;
         flex-direction: column;
-        gap: 6px;
+        gap: 5px;
       }
 
       .atom-quick-info h2 {
-        font-size: 24px;
+        font-size: 22px;
         font-weight: 800;
-        letter-spacing: -0.5px;
+        letter-spacing: -0.4px;
         color: #fff;
       }
 
@@ -931,7 +926,16 @@
         line-height: 1.5;
       }
 
-      /* Victory Confetti Canvas */
+      .inspector-nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 4px;
+        padding-top: 12px;
+        border-top: 1px solid var(--border-subtle);
+      }
+
+      /* Confetti Canvas */
       #confetti-canvas {
         position: fixed;
         inset: 0;
@@ -939,7 +943,7 @@
         z-index: 120;
       }
 
-      /* Master Mode Hidden Styling */
+      /* Master Mode */
       body.mode-master .col-header small,
       body.mode-master .col-header span {
         visibility: hidden;
@@ -964,7 +968,7 @@
         display: none;
       }
 
-      /* Responsive adjustments */
+      /* Responsive */
       @media (max-width: 900px) {
         header {
           padding: 0 16px;
@@ -983,8 +987,8 @@
           padding: 12px 16px;
         }
         .hand-card {
-          width: 90px;
-          height: 114px;
+          width: 92px;
+          height: 116px;
         }
       }
     </style>
@@ -996,42 +1000,42 @@
         <div class="brand-icon">⚗</div>
         <div class="brand-title">
           Periodic Quest
-          <span class="brand-badge">Period 1–3</span>
+          <span class="brand-badge">Chu kỳ 1–3</span>
         </div>
       </div>
 
       <div class="top-stats font-mono">
-        <div class="stat-item">
-          <span>Time:</span>
+        <div class="stat-item" title="Thời gian làm bài">
+          <span>Thời gian:</span>
           <span id="timer-val" class="stat-val">00:00</span>
         </div>
-        <div class="stat-item">
-          <span>Score:</span>
+        <div class="stat-item" title="Điểm số tích lũy">
+          <span>Điểm:</span>
           <span id="score-val" class="stat-val">0</span>
         </div>
-        <div class="stat-item">
-          <span>Streak:</span>
+        <div class="stat-item" title="Hệ số chuỗi đúng liên tiếp">
+          <span>Chuỗi:</span>
           <span id="streak-val" class="stat-val">1x</span>
           <span id="streak-fire-icon" class="streak-fire" style="display: none;">🔥</span>
         </div>
-        <div class="stat-item">
-          <span>Placed:</span>
+        <div class="stat-item" title="Số nguyên tố đã đặt đúng">
+          <span>Đã xếp:</span>
           <span id="placed-val" class="stat-val">0 / 18</span>
         </div>
       </div>
 
       <div class="header-actions">
-        <button id="sound-btn" class="btn" title="Toggle Sound">
+        <button id="sound-btn" class="btn" title="Bật/Tắt âm thanh">
           <span id="sound-icon">🔊</span>
-          <span id="sound-label">Sound</span>
+          <span id="sound-label">Âm thanh</span>
         </button>
-        <button id="trends-btn" class="btn" title="View Periodic Trends Guide">
+        <button id="trends-btn" class="btn" title="Xem cẩm nang quy luật bảng tuần hoàn">
           <span>📈</span>
-          <span>Trends Guide</span>
+          <span>Quy luật</span>
         </button>
-        <button id="restart-btn" class="btn" title="Restart Game">
+        <button id="restart-btn" class="btn" title="Chơi lại ván mới">
           <span>↺</span>
-          <span>Restart</span>
+          <span>Chơi lại</span>
         </button>
       </div>
     </header>
@@ -1039,9 +1043,9 @@
     <!-- Ribbon Controls & Legend -->
     <div class="ribbon">
       <div class="difficulty-tabs">
-        <button class="tab-btn active" data-difficulty="beginner">Beginner (Hỗ trợ)</button>
-        <button class="tab-btn" data-difficulty="explorer">Explorer (Tiêu chuẩn)</button>
-        <button class="tab-btn" data-difficulty="master">Master (Cao thủ)</button>
+        <button class="tab-btn active" data-difficulty="beginner" title="Hiện số chu kỳ, nhóm và gợi ý electron">Tập sự (Hỗ trợ)</button>
+        <button class="tab-btn" data-difficulty="explorer" title="Hiện bảng chuẩn, ẩn gợi ý trên thẻ">Khám phá (Chuẩn)</button>
+        <button class="tab-btn" data-difficulty="master" title="Ẩn toàn bộ tọa độ nhóm và chu kỳ">Cao thủ (Ẩn tọa độ)</button>
       </div>
 
       <div class="family-legend" id="family-legend">
@@ -1054,9 +1058,9 @@
       <!-- Live Contextual Educational Hint -->
       <div class="hint-bar" id="hint-bar">
         <div class="hint-text" id="hint-text">
-          💡 <strong>Tip:</strong> Drag element cards from your deck below to their periodic table positions, or click a card and click its empty grid slot.
+          💡 <strong>Mẹo:</strong> Kéo thả thẻ nguyên tố từ bộ bài bên dưới vào ô tương ứng trên Bảng tuần hoàn, hoặc nhấp chọn thẻ rồi nhấp vào ô đích.
         </div>
-        <div id="hint-close" style="cursor: pointer; color: var(--text-muted); font-size: 14px;">✕</div>
+        <div id="hint-close" style="cursor: pointer; color: var(--text-muted); font-size: 14px;" title="Đóng gợi ý">✕</div>
       </div>
 
       <!-- Periodic Table 18-Column Grid -->
@@ -1072,8 +1076,8 @@
       <div class="dock-container">
         <div class="deck-meta">
           <div class="deck-title">
-            <span>Element Deck</span>
-            <span class="font-mono" id="deck-remaining-text" style="color: #38bdf8;">14 remaining</span>
+            <span>Bộ bài nguyên tố</span>
+            <span class="font-mono" id="deck-remaining-text" style="color: #38bdf8;">14 thẻ còn lại</span>
           </div>
           <div class="deck-progress-bar">
             <div class="deck-progress-fill" id="deck-progress-fill" style="width: 0%;"></div>
@@ -1086,13 +1090,13 @@
         </div>
 
         <div class="dock-actions">
-          <button id="skip-btn" class="btn" title="Cycle hand with new elements">
+          <button id="skip-btn" class="btn" title="Trộn và rút 4 thẻ nguyên tố mới">
             <span>⇄</span>
-            <span>Cycle Hand</span>
+            <span>Đổi lượt</span>
           </button>
-          <button id="guide-help-btn" class="btn btn-primary" title="How to play">
+          <button id="guide-help-btn" class="btn btn-primary" title="Hướng dẫn cách chơi">
             <span>?</span>
-            <span>Instructions</span>
+            <span>Hướng dẫn</span>
           </button>
         </div>
       </div>
@@ -1104,9 +1108,9 @@
         <div class="modal-header">
           <div class="modal-title">
             <span id="modal-cat-dot" style="width: 10px; height: 10px; border-radius: 3px; display: inline-block;"></span>
-            <span id="modal-elem-header">Element Inspector</span>
+            <span id="modal-elem-header">Hồ sơ nguyên tố</span>
           </div>
-          <button class="modal-close" id="modal-close-btn">&times;</button>
+          <button class="modal-close" id="modal-close-btn" title="Đóng">&times;</button>
         </div>
         <div class="modal-body">
           <div class="atom-visualizer-container">
@@ -1115,43 +1119,53 @@
             </div>
             <div class="atom-quick-info">
               <h2 id="modal-elem-title">C · Carbon (Cacbon)</h2>
-              <p id="modal-elem-family" style="font-weight: 600; color: #38bdf8;">Reactive Non-metal</p>
+              <p id="modal-elem-family" style="font-weight: 600; color: #38bdf8;">Phi kim hoạt động</p>
               <p id="modal-elem-config" class="font-mono" style="font-size: 12px; color: #94a3b8;">1s² 2s² 2p²</p>
               <div style="font-size: 11px; color: #64748b; margin-top: 4px;">
-                Shells: <span id="modal-elem-shells" class="font-mono" style="color: #cbd5e1;">K: 2 · L: 4</span>
+                Lớp electron: <span id="modal-elem-shells" class="font-mono" style="color: #cbd5e1;">K: 2 · L: 4</span>
               </div>
             </div>
           </div>
 
           <div class="props-grid">
             <div class="prop-card">
-              <span class="prop-label">Atomic Number (Z)</span>
+              <span class="prop-label">Số hiệu nguyên tử (Z)</span>
               <span class="prop-value font-mono" id="modal-prop-z">6</span>
             </div>
             <div class="prop-card">
-              <span class="prop-label">Standard Atomic Weight</span>
+              <span class="prop-label">Nguyên tử khối chuẩn</span>
               <span class="prop-value font-mono" id="modal-prop-mass">12.011 u</span>
             </div>
             <div class="prop-card">
-              <span class="prop-label">Group & Period</span>
-              <span class="prop-value font-mono" id="modal-prop-coords">Group 14 (IVA) · Period 2</span>
+              <span class="prop-label">Vị trí (Nhóm & Chu kỳ)</span>
+              <span class="prop-value font-mono" id="modal-prop-coords">Nhóm 14 (IVA) · Chu kỳ 2</span>
             </div>
             <div class="prop-card">
-              <span class="prop-label">Valence Electrons</span>
+              <span class="prop-label">Electron hóa trị</span>
               <span class="prop-value font-mono" id="modal-prop-valence">4 e⁻</span>
             </div>
             <div class="prop-card">
-              <span class="prop-label">State of Matter (STP)</span>
-              <span class="prop-value" id="modal-prop-state">Solid</span>
+              <span class="prop-label">Trạng thái (ở ĐKTC)</span>
+              <span class="prop-value" id="modal-prop-state">Chất rắn</span>
             </div>
             <div class="prop-card">
-              <span class="prop-label">Protons / Neutrons</span>
+              <span class="prop-label">Hạt nhân (p⁺ / n⁰)</span>
               <span class="prop-value font-mono" id="modal-prop-subatomic">6 p⁺ · 6 n⁰</span>
             </div>
           </div>
 
           <div class="fun-fact-box" id="modal-fun-fact">
-            Fun fact goes here...
+            Thông tin thực tế thú vị...
+          </div>
+
+          <div class="inspector-nav">
+            <button id="modal-prev-btn" class="btn" style="padding: 6px 12px; font-size: 12px;">
+              <span>◀</span> Nguyên tố trước
+            </button>
+            <span class="font-mono" id="modal-nav-indicator" style="font-size: 12px; color: var(--text-muted);">6 / 18</span>
+            <button id="modal-next-btn" class="btn" style="padding: 6px 12px; font-size: 12px;">
+              Nguyên tố kế <span>▶</span>
+            </button>
           </div>
         </div>
       </div>
@@ -1159,41 +1173,41 @@
 
     <!-- Periodic Trends Guide Modal -->
     <div class="modal-backdrop" id="trends-modal">
-      <div class="modal-card" style="max-width: 680px;">
+      <div class="modal-card" style="max-width: 660px;">
         <div class="modal-header">
           <div class="modal-title">
-            <span>📈 Periodic Trends: Periods 1 to 3</span>
+            <span>📈 Quy Luật Tuần Hoàn: Chu Kỳ 1, 2 và 3</span>
           </div>
-          <button class="modal-close" id="trends-close-btn">&times;</button>
+          <button class="modal-close" id="trends-close-btn" title="Đóng">&times;</button>
         </div>
         <div class="modal-body">
           <p style="font-size: 13px; color: var(--text-secondary); line-height: 1.6;">
-            Understanding periodic trends across Periods 1, 2, and 3 helps predict chemical reactivity, bonding behavior, and physical properties:
+            Ghi nhớ các quy luật biến đổi tuần hoàn giúp bạn dự đoán nhanh tính chất hóa học và vị trí nguyên tố:
           </p>
 
           <div style="display: flex; flex-direction: column; gap: 14px;">
             <div class="prop-card" style="padding: 14px;">
-              <span class="prop-label" style="color: #38bdf8;">1. Atomic Radius (Bán kính nguyên tử)</span>
-              <p style="font-size: 13px; color: #e2e8f0; margin-top: 4px;">
-                <strong>Decreases across a period (Left → Right):</strong> As nuclear charge ($Z$) increases, protons pull electron shells tighter towards the nucleus.<br>
-                <strong>Increases down a group (Top → Bottom):</strong> Additional electron shells (Period 1: K, Period 2: K+L, Period 3: K+L+M) shield valence electrons.
+              <span class="prop-label" style="color: #38bdf8;">1. Bán kính nguyên tử ($r$)</span>
+              <p style="font-size: 13px; color: #e2e8f0; margin-top: 4px; line-height: 1.5;">
+                <strong>Trong một chu kỳ (Trái → Phải):</strong> Bán kính nguyên tử giảm dần. Vì điện tích hạt nhân ($Z$) tăng dần làm tăng lực hút tĩnh điện lên các electron lớp ngoài cùng.<br>
+                <strong>Trong một nhóm (Trên → Dưới):</strong> Bán kính nguyên tử tăng dần do số lớp electron tăng thêm (Chu kỳ 1: lớp K; Chu kỳ 2: lớp K, L; Chu kỳ 3: lớp K, L, M).
               </p>
             </div>
 
             <div class="prop-card" style="padding: 14px;">
-              <span class="prop-label" style="color: #a855f7;">2. Electronegativity (Độ âm điện) & Reactivity</span>
-              <p style="font-size: 13px; color: #e2e8f0; margin-top: 4px;">
-                <strong>Increases across a period:</strong> Halogens (Fluorine: 3.98, Chlorine: 3.16) have the highest electronegativity. Noble gases (He, Ne, Ar) have zero electronegativity due to full octet/duet shells.<br>
-                <strong>Decreases down a group:</strong> Electrons are further from positive nucleus.
+              <span class="prop-label" style="color: #a855f7;">2. Độ âm điện ($\chi$) & Tính phi kim</span>
+              <p style="font-size: 13px; color: #e2e8f0; margin-top: 4px; line-height: 1.5;">
+                <strong>Trong một chu kỳ (Trái → Phải):</strong> Độ âm điện tăng dần, tính phi kim tăng dần. Flo (F) có độ âm điện lớn nhất (3,98). Khí hiếm (He, Ne, Ar) có lớp vỏ bão hòa nên trơ về mặt hóa học.<br>
+                <strong>Trong một nhóm (Trên → Dưới):</strong> Độ âm điện giảm dần.
               </p>
             </div>
 
             <div class="prop-card" style="padding: 14px;">
-              <span class="prop-label" style="color: #10b981;">3. Metallic vs. Non-metallic Character</span>
-              <p style="font-size: 13px; color: #e2e8f0; margin-top: 4px;">
-                <strong>Left side (Groups 1–2, 13):</strong> Alkali & alkaline earth metals (Li, Be, Na, Mg, Al) readily donate valence electrons ($1e^-, 2e^-, 3e^-$).<br>
-                <strong>Middle (Group 14):</strong> Metalloids like Silicon (Si) and Boron (B) act as semiconductors.<br>
-                <strong>Right side (Groups 15–18):</strong> Non-metals (C, N, O, P, S, F, Cl) and noble gases.
+              <span class="prop-label" style="color: #10b981;">3. Số electron hóa trị & Tính kim loại</span>
+              <p style="font-size: 13px; color: #e2e8f0; margin-top: 4px; line-height: 1.5;">
+                <strong>Nhóm IA, IIA, IIIA (Li, Be, Na, Mg, Al):</strong> Kim loại, có 1, 2, 3 electron hóa trị, dễ nhường electron.<br>
+                <strong>Nhóm IVA (C, Si):</strong> 4 electron hóa trị; Bo (B) và Silic (Si) là các á kim (bán dẫn).<br>
+                <strong>Nhóm VA, VIA, VIIA (N, O, F, P, S, Cl):</strong> Phi kim điển hình, có 5, 6, 7 electron hóa trị, dễ nhận electron để đạt cơ cấu bát tử vững bền.
               </p>
             </div>
           </div>
@@ -1206,33 +1220,33 @@
       <div class="modal-card" style="max-width: 520px; text-align: center;">
         <div class="modal-body" style="padding: 32px 24px; align-items: center;">
           <div style="font-size: 48px; margin-bottom: 8px;">🏆</div>
-          <h2 style="font-size: 26px; font-weight: 800; color: #fff;">Periodic Table Mastered!</h2>
-          <p id="victory-title" style="font-size: 15px; color: #38bdf8; font-weight: 700; margin-top: 2px;">Senior Quantum Chemist</p>
+          <h2 style="font-size: 25px; font-weight: 800; color: #fff;">Hoàn Thành Xuất Sắc!</h2>
+          <p id="victory-title" style="font-size: 15px; color: #38bdf8; font-weight: 700; margin-top: 2px;">Nhà Hóa Học Lượng Tử</p>
           <p style="font-size: 13px; color: var(--text-secondary); margin-top: 6px; max-width: 400px;">
-            You have successfully placed all 18 elements across Periods 1, 2, and 3.
+            Bạn đã sắp xếp chính xác toàn bộ 18 nguyên tố từ Chu kỳ 1 đến Chu kỳ 3 trên Bảng tuần hoàn.
           </p>
 
           <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; width: 100%; margin: 20px 0;">
             <div class="prop-card">
-              <span class="prop-label">Final Score</span>
+              <span class="prop-label">Tổng Điểm</span>
               <span class="prop-value font-mono" id="victory-score" style="color: #10b981;">0</span>
             </div>
             <div class="prop-card">
-              <span class="prop-label">Total Time</span>
+              <span class="prop-label">Thời Gian</span>
               <span class="prop-value font-mono" id="victory-time">00:00</span>
             </div>
             <div class="prop-card">
-              <span class="prop-label">Best Streak</span>
+              <span class="prop-label">Chuỗi Đúng Tốt Nhất</span>
               <span class="prop-value font-mono" id="victory-streak">0x</span>
             </div>
           </div>
 
-          <div style="display: flex; gap: 12px; width: 100%; justify-content: center;">
+          <div style="display: flex; gap: 12px; width: 100%; justify-content: center; flex-wrap: wrap;">
             <button id="victory-play-again-btn" class="btn btn-primary" style="padding: 10px 20px; font-size: 14px;">
-              <span>↺</span> Play Again (Master Mode)
+              <span>↺</span> Thử Thách Chế Độ Cao Thủ
             </button>
             <button id="victory-explore-btn" class="btn" style="padding: 10px 20px; font-size: 14px;">
-              <span>🔍</span> Explore Elements
+              <span>🔍</span> Xem Bảng Tuần Hoàn
             </button>
           </div>
         </div>
@@ -1244,41 +1258,42 @@
       <div class="modal-card">
         <div class="modal-header">
           <div class="modal-title">
-            <span>🔬 How to Play Periodic Quest</span>
+            <span>🔬 Hướng Dẫn Chơi Periodic Quest</span>
           </div>
-          <button class="modal-close" id="instructions-close-btn">&times;</button>
+          <button class="modal-close" id="instructions-close-btn" title="Đóng">&times;</button>
         </div>
         <div class="modal-body">
           <div style="display: flex; flex-direction: column; gap: 14px; font-size: 13px; color: #cbd5e1; line-height: 1.6;">
             <div>
-              <strong style="color: #38bdf8;">1. Goal:</strong> Place all 18 chemical elements (Period 1 to 3: Hydrogen to Argon) into their proper periodic table grid coordinates.
+              <strong style="color: #38bdf8;">1. Mục tiêu:</strong> Sắp xếp chính xác 18 nguyên tố hóa học đầu tiên (từ Hidro đến Agon) vào đúng ô tọa độ Chu kỳ và Nhóm trên Bảng tuần hoàn.
             </div>
             <div>
-              <strong style="color: #38bdf8;">2. Interaction Modes:</strong>
+              <strong style="color: #38bdf8;">2. Hai cách thao tác tiện lợi:</strong>
               <ul style="margin-left: 20px; margin-top: 4px;">
-                <li><strong>Drag & Drop:</strong> Drag any card from your deck at the bottom and drop it onto its slot.</li>
-                <li><strong>Click to Select:</strong> Click a card in your deck (it lights up with an active neon pulse), then click the target cell on the periodic table.</li>
+                <li><strong>Kéo & Thả (Drag & Drop):</strong> Giữ và kéo thẻ nguyên tố từ khay bài vào ô trống tương ứng. Hỗ trợ cảm ứng hoàn hảo trên điện thoại và máy tính bảng.</li>
+                <li><strong>Nhấp chọn (Click to Place):</strong> Nhấp vào thẻ nguyên tố ở khay bài để chọn (thẻ sẽ phát sáng viền xanh), sau đó nhấp vào ô mục tiêu trên bảng.</li>
               </ul>
             </div>
             <div>
-              <strong style="color: #38bdf8;">3. Spatial Scaffolding:</strong> Hovering over any slot highlights its corresponding Period row and Group column header to help you locate coordinates.
+              <strong style="color: #38bdf8;">3. Định vị tọa độ thông minh:</strong> Khi rê chuột qua ô trống bất kỳ, tiêu đề Chu kỳ (hàng ngang) và tiêu đề Phân nhóm (cột dọc) tương ứng sẽ tự động phát sáng để hỗ trợ bạn định vị.
             </div>
             <div>
-              <strong style="color: #38bdf8;">4. Scoring & Streaks:</strong>
+              <strong style="color: #38bdf8;">4. Điểm số & Chuỗi liên tiếp:</strong>
               <ul style="margin-left: 20px; margin-top: 4px;">
-                <li>+100 base points for each correct placement.</li>
-                <li>Consecutive correct placements earn Streak multipliers (2x, 3x, 4x)!</li>
-                <li>Incorrect placements reset your streak and provide an educational hint.</li>
+                <li>Mỗi lần xếp đúng: +100 điểm cơ bản.</li>
+                <li>Xếp đúng liên tiếp: Kích hoạt hệ số nhân chuỗi (2x, 3x, 4x điểm)!</li>
+                <li>Xếp sai: Chuỗi điểm quay về 1x và hệ thống sẽ hiển thị gợi ý sư phạm chi tiết để bạn học hỏi.</li>
               </ul>
             </div>
             <div>
-              <strong style="color: #38bdf8;">5. Element Inspector:</strong> Click on any placed element on the board at any time to open the animated Bohr orbital model and see its full electron configuration, valence shells, and fun facts!
+              <strong style="color: #38bdf8;">5. Khám phá mô hình Bohr:</strong> Nhấp vào bất kỳ nguyên tố nào đã xếp trên bảng để mở kính lúp nguyên tử, ngắm các electron chuyển động trên các lớp K, L, M và đọc thông tin cấu hình electron.
             </div>
           </div>
         </div>
       </div>
     </div>
 
+    <!-- Canvas hiệu ứng pháo hoa khi chiến thắng -->
     <canvas id="confetti-canvas"></canvas>
 
     <!-- Complete Vanilla JavaScript Game Logic -->
@@ -1287,7 +1302,7 @@
         "use strict";
 
         // ==========================================
-        // 1. COMPREHENSIVE ELEMENT DATABASE (1 - 18)
+        // 1. CƠ SỞ DỮ LIỆU NGUYÊN TỐ 1 - 18 (H đến Ar)
         // ==========================================
         const ELEMENTS = [
           {
@@ -1300,16 +1315,16 @@
             group: 1,
             groupCas: "IA",
             category: "nonmetal",
-            categoryName: "Non-metal (Phi kim)",
+            categoryName: "Phi kim (Non-metal)",
             color: "#38bdf8",
             colorGlow: "rgba(56, 189, 248, 0.45)",
             electrons: [1],
             valence: 1,
             config: "1s¹",
-            state: "Gas",
+            state: "Khí (Gas)",
             protons: 1,
             neutrons: 0,
-            funFact: "Most abundant element in the universe, constituting roughly 75% of all baryonic mass."
+            funFact: "Nguyên tố dồi dào nhất vũ trụ, chiếm khoảng 75% tổng khối lượng vật chất nhìn thấy được; nhiên liệu của các ngôi sao."
           },
           {
             z: 2,
@@ -1321,16 +1336,16 @@
             group: 18,
             groupCas: "VIIIA",
             category: "noble",
-            categoryName: "Noble Gas (Khí hiếm)",
+            categoryName: "Khí hiếm (Noble Gas)",
             color: "#ec4899",
             colorGlow: "rgba(236, 72, 153, 0.45)",
             electrons: [2],
             valence: 2,
             config: "1s²",
-            state: "Gas",
+            state: "Khí (Gas)",
             protons: 2,
             neutrons: 2,
-            funFact: "Second lightest and second most abundant element in the observable universe. Completely chemically inert."
+            funFact: "Khí nhẹ thứ hai và hoàn toàn trơ về mặt hóa học do có lớp vỏ electron K bão hòa (duet 2 electron)."
           },
           {
             z: 3,
@@ -1342,16 +1357,16 @@
             group: 1,
             groupCas: "IA",
             category: "alkali",
-            categoryName: "Alkali Metal (Kim loại kiềm)",
+            categoryName: "Kim loại kiềm (Alkali)",
             color: "#f43f5e",
             colorGlow: "rgba(244, 63, 94, 0.45)",
             electrons: [2, 1],
             valence: 1,
             config: "[He] 2s¹",
-            state: "Solid",
+            state: "Rắn (Solid)",
             protons: 3,
             neutrons: 4,
-            funFact: "The least dense of all solid elements; soft enough to cut with a knife and powers modern electric vehicles."
+            funFact: "Kim loại nhẹ nhất đã biết, nổi trên mặt nước; thành phần cốt lõi của pin sạc ion lithium trong smartphone và xe điện."
           },
           {
             z: 4,
@@ -1363,16 +1378,16 @@
             group: 2,
             groupCas: "IIA",
             category: "alkaline-earth",
-            categoryName: "Alkaline Earth (Kiềm thổ)",
+            categoryName: "Kim loại kiềm thổ",
             color: "#f59e0b",
             colorGlow: "rgba(245, 158, 11, 0.45)",
             electrons: [2, 2],
             valence: 2,
             config: "[He] 2s²",
-            state: "Solid",
+            state: "Rắn (Solid)",
             protons: 4,
             neutrons: 5,
-            funFact: "Extremely rigid and lightweight metal used to craft mirrors on the James Webb Space Telescope."
+            funFact: "Kim loại nhẹ nhưng cực kỳ cứng vững, được dát mạ vàng dùng chế tạo gương phản xạ của Kính viễn vọng Không gian James Webb."
           },
           {
             z: 5,
@@ -1384,16 +1399,16 @@
             group: 13,
             groupCas: "IIIA",
             category: "metalloid",
-            categoryName: "Metalloid (Á kim)",
+            categoryName: "Á kim (Metalloid)",
             color: "#10b981",
             colorGlow: "rgba(16, 185, 129, 0.45)",
             electrons: [2, 3],
             valence: 3,
             config: "[He] 2s² 2p¹",
-            state: "Solid",
+            state: "Rắn (Solid)",
             protons: 5,
             neutrons: 6,
-            funFact: "Low-abundance metalloid that gives Pyrex borosilicate glass its famous thermal shock resistance."
+            funFact: "Á kim bán dẫn giúp thủy tinh Pyrex chịu sốc nhiệt tuyệt hảo và làm nam châm vĩnh cửu NdFeB siêu mạnh."
           },
           {
             z: 6,
@@ -1405,16 +1420,16 @@
             group: 14,
             groupCas: "IVA",
             category: "nonmetal",
-            categoryName: "Non-metal (Phi kim)",
+            categoryName: "Phi kim (Non-metal)",
             color: "#38bdf8",
             colorGlow: "rgba(56, 189, 248, 0.45)",
             electrons: [2, 4],
             valence: 4,
             config: "[He] 2s² 2p²",
-            state: "Solid",
+            state: "Rắn (Solid)",
             protons: 6,
             neutrons: 6,
-            funFact: "The backbone of all organic chemistry and life on Earth, forming diamonds, graphite, and graphene."
+            funFact: "Nền tảng của toàn bộ Hóa hữu cơ và sự sống trên Trái Đất. Tạo nên kim cương siêu cứng, than chì trơn mềm và graphene."
           },
           {
             z: 7,
@@ -1426,16 +1441,16 @@
             group: 15,
             groupCas: "VA",
             category: "nonmetal",
-            categoryName: "Non-metal (Phi kim)",
+            categoryName: "Phi kim (Non-metal)",
             color: "#38bdf8",
             colorGlow: "rgba(56, 189, 248, 0.45)",
             electrons: [2, 5],
             valence: 5,
             config: "[He] 2s² 2p³",
-            state: "Gas",
+            state: "Khí (Gas)",
             protons: 7,
             neutrons: 7,
-            funFact: "Forms ~78% of Earth's atmosphere. Its triple covalent bond (N≡N) makes molecular nitrogen remarkably stable."
+            funFact: "Chiếm khoảng 78% thể tích khí quyển Trái Đất. Liên kết ba N≡N siêu bền khiến khí nitơ rất trơ ở nhiệt độ phòng."
           },
           {
             z: 8,
@@ -1447,16 +1462,16 @@
             group: 16,
             groupCas: "VIA",
             category: "nonmetal",
-            categoryName: "Non-metal (Phi kim)",
+            categoryName: "Phi kim (Non-metal)",
             color: "#38bdf8",
             colorGlow: "rgba(56, 189, 248, 0.45)",
             electrons: [2, 6],
             valence: 6,
             config: "[He] 2s² 2p⁴",
-            state: "Gas",
+            state: "Khí (Gas)",
             protons: 8,
             neutrons: 8,
-            funFact: "Essential for cellular aerobic respiration. Makes up 21% of atmosphere and nearly half of Earth's crust mass."
+            funFact: "Cần thiết cho quá trình hô hấp hiếu khí và sự cháy; chiếm 21% bầu khí quyển và gần 47% khối lượng vỏ Trái Đất."
           },
           {
             z: 9,
@@ -1474,10 +1489,10 @@
             electrons: [2, 7],
             valence: 7,
             config: "[He] 2s² 2p⁵",
-            state: "Gas",
+            state: "Khí (Gas)",
             protons: 9,
             neutrons: 10,
-            funFact: "The most electronegative and chemically reactive of all elements, attacking almost all organic and inorganic substances."
+            funFact: "Nguyên tố có độ âm điện lớn nhất (3,98) và tính oxi hóa mãnh liệt nhất trong toàn bộ bảng tuần hoàn."
           },
           {
             z: 10,
@@ -1489,16 +1504,16 @@
             group: 18,
             groupCas: "VIIIA",
             category: "noble",
-            categoryName: "Noble Gas (Khí hiếm)",
+            categoryName: "Khí hiếm (Noble Gas)",
             color: "#ec4899",
             colorGlow: "rgba(236, 72, 153, 0.45)",
             electrons: [2, 8],
             valence: 8,
             config: "[He] 2s² 2p⁶",
-            state: "Gas",
+            state: "Khí (Gas)",
             protons: 10,
             neutrons: 10,
-            funFact: "Colorless and odorless noble gas that glows a brilliant reddish-orange when excited in high-voltage discharge tubes."
+            funFact: "Khí hiếm phát ra ánh sáng màu đỏ cam rực rỡ đặc trưng khi bị kích thích điện áp cao trong các bóng đèn quảng cáo neon."
           },
           {
             z: 11,
@@ -1510,16 +1525,16 @@
             group: 1,
             groupCas: "IA",
             category: "alkali",
-            categoryName: "Alkali Metal (Kim loại kiềm)",
+            categoryName: "Kim loại kiềm (Alkali)",
             color: "#f43f5e",
             colorGlow: "rgba(244, 63, 94, 0.45)",
             electrons: [2, 8, 1],
             valence: 1,
             config: "[Ne] 3s¹",
-            state: "Solid",
+            state: "Rắn (Solid)",
             protons: 11,
             neutrons: 12,
-            funFact: "Highly reactive alkali metal that reacts violently with water. Combines with chlorine to form common table salt (NaCl)."
+            funFact: "Kim loại mềm màu trắng bạc, phản ứng nổ mãnh liệt với nước tạo khí H2 và dung dịch kiềm NaOH. Hợp chất tạo muối ăn NaCl."
           },
           {
             z: 12,
@@ -1531,16 +1546,16 @@
             group: 2,
             groupCas: "IIA",
             category: "alkaline-earth",
-            categoryName: "Alkaline Earth (Kiềm thổ)",
+            categoryName: "Kim loại kiềm thổ",
             color: "#f59e0b",
             colorGlow: "rgba(245, 158, 11, 0.45)",
             electrons: [2, 8, 2],
             valence: 2,
             config: "[Ne] 3s²",
-            state: "Solid",
+            state: "Rắn (Solid)",
             protons: 12,
             neutrons: 12,
-            funFact: "Burns in air with an intense dazzling white light. Anchors the central ion in plant chlorophyll molecules."
+            funFact: "Cháy trong không khí với ngọn lửa trắng chói lòa; là ion trung tâm điều phối quang hợp trong phân tử diệp lục của thực vật."
           },
           {
             z: 13,
@@ -1552,16 +1567,16 @@
             group: 13,
             groupCas: "IIIA",
             category: "post-trans",
-            categoryName: "Post-transition (Kim loại chuyển tiếp)",
+            categoryName: "Kim loại sau chuyển tiếp",
             color: "#06b6d4",
             colorGlow: "rgba(6, 182, 212, 0.45)",
             electrons: [2, 8, 3],
             valence: 3,
             config: "[Ne] 3s² 3p¹",
-            state: "Solid",
+            state: "Rắn (Solid)",
             protons: 13,
             neutrons: 14,
-            funFact: "The most abundant metallic element in Earth's crust (approx. 8%). Forms an instant protective oxide skin (Al₂O₃)."
+            funFact: "Kim loại phổ biến nhất trong vỏ Trái Đất (chiếm khoảng 8%). Có lớp màng oxit Al2O3 mỏng tự nhiên bảo vệ chống ăn mòn."
           },
           {
             z: 14,
@@ -1573,16 +1588,16 @@
             group: 14,
             groupCas: "IVA",
             category: "metalloid",
-            categoryName: "Metalloid (Á kim)",
+            categoryName: "Á kim (Metalloid)",
             color: "#10b981",
             colorGlow: "rgba(16, 185, 129, 0.45)",
             electrons: [2, 8, 4],
             valence: 4,
             config: "[Ne] 3s² 3p²",
-            state: "Solid",
+            state: "Rắn (Solid)",
             protons: 14,
             neutrons: 14,
-            funFact: "The bedrock of modern computing and semiconductors; comprises over 28% of Earth's continental crust."
+            funFact: "Trái tim của cuộc cách mạng bán dẫn, chip vi xử lý và pin mặt trời. Chiếm hơn 28% khối lượng lớp vỏ thạch quyển Trái Đất."
           },
           {
             z: 15,
@@ -1594,16 +1609,16 @@
             group: 15,
             groupCas: "VA",
             category: "nonmetal",
-            categoryName: "Non-metal (Phi kim)",
+            categoryName: "Phi kim (Non-metal)",
             color: "#38bdf8",
             colorGlow: "rgba(56, 189, 248, 0.45)",
             electrons: [2, 8, 5],
             valence: 5,
             config: "[Ne] 3s² 3p³",
-            state: "Solid",
+            state: "Rắn (Solid)",
             protons: 15,
             neutrons: 16,
-            funFact: "Critical structural component of DNA/RNA sugar-phosphate backbones and ATP (adenosine triphosphate) cellular energy."
+            funFact: "Thành phần cấu trúc không thể thay thế trong bộ khung đường-phosphate của ADN/ARN và phân tử tích trữ năng lượng ATP tế bào."
           },
           {
             z: 16,
@@ -1615,16 +1630,16 @@
             group: 16,
             groupCas: "VIA",
             category: "nonmetal",
-            categoryName: "Non-metal (Phi kim)",
+            categoryName: "Phi kim (Non-metal)",
             color: "#38bdf8",
             colorGlow: "rgba(56, 189, 248, 0.45)",
             electrons: [2, 8, 6],
             valence: 6,
             config: "[Ne] 3s² 3p⁴",
-            state: "Solid",
+            state: "Rắn (Solid)",
             protons: 16,
             neutrons: 16,
-            funFact: "Bright yellow crystalline solid historically called brimstone; forms disulfide bridges essential for 3D protein folding."
+            funFact: "Chất rắn tinh thể màu vàng chanh; tạo cầu nối disulfide (-S-S-) quyết định hình dạng cuộn gập không gian 3D của các protein."
           },
           {
             z: 17,
@@ -1642,10 +1657,10 @@
             electrons: [2, 8, 7],
             valence: 7,
             config: "[Ne] 3s² 3p⁵",
-            state: "Gas",
+            state: "Khí (Gas)",
             protons: 17,
             neutrons: 18,
-            funFact: "Pungent greenish-yellow gas widely used for municipal drinking water purification and PVC plastic production."
+            funFact: "Chất khí màu vàng lục, mùi hắc; chất khử trùng cực mạnh dùng làm sạch nước sinh hoạt và sản xuất nhựa PVC."
           },
           {
             z: 18,
@@ -1657,30 +1672,29 @@
             group: 18,
             groupCas: "VIIIA",
             category: "noble",
-            categoryName: "Noble Gas (Khí hiếm)",
+            categoryName: "Khí hiếm (Noble Gas)",
             color: "#ec4899",
             colorGlow: "rgba(236, 72, 153, 0.45)",
             electrons: [2, 8, 8],
             valence: 8,
             config: "[Ne] 3s² 3p⁶",
-            state: "Gas",
+            state: "Khí (Gas)",
             protons: 18,
             neutrons: 22,
-            funFact: "The third most abundant gas in Earth's atmosphere (0.934%). Named from Greek 'argos' (lazy/inactive) due to chemical inertness."
+            funFact: "Khí dồi dào thứ 3 trong khí quyển (chiếm 0,934%). Tên gọi bắt nguồn từ tiếng Hy Lạp 'argos' (lười biếng) vì tính trơ hóa học tuyệt đối."
           }
         ];
 
         const CATEGORIES = [
-          { key: "alkali", label: "Alkali Metals", color: "var(--fam-alkali)" },
-          { key: "alkaline-earth", label: "Alkaline Earth", color: "var(--fam-alkaline-earth)" },
-          { key: "post-trans", label: "Post-transition", color: "var(--fam-post-trans)" },
-          { key: "metalloid", label: "Metalloids", color: "var(--fam-metalloid)" },
-          { key: "nonmetal", label: "Non-metals", color: "var(--fam-nonmetal)" },
-          { key: "halogen", label: "Halogens", color: "var(--fam-halogen)" },
-          { key: "noble", label: "Noble Gases", color: "var(--fam-noble)" }
+          { key: "alkali", label: "Kim loại kiềm", color: "var(--fam-alkali)" },
+          { key: "alkaline-earth", label: "Kiềm thổ", color: "var(--fam-alkaline-earth)" },
+          { key: "post-trans", label: "Kim loại chuyển tiếp", color: "var(--fam-post-trans)" },
+          { key: "metalloid", label: "Á kim", color: "var(--fam-metalloid)" },
+          { key: "nonmetal", label: "Phi kim", color: "var(--fam-nonmetal)" },
+          { key: "halogen", label: "Halogen", color: "var(--fam-halogen)" },
+          { key: "noble", label: "Khí hiếm", color: "var(--fam-noble)" }
         ];
 
-        // Roman numerals & Group Names
         const GROUP_LABELS = [
           { num: 1, cas: "IA" },
           { num: 2, cas: "IIA" },
@@ -1703,7 +1717,7 @@
         ];
 
         // ==========================================
-        // 2. WEB AUDIO API SYNTHESIZER
+        // 2. MÁY TỔNG HỢP ÂM THANH WEB AUDIO API
         // ==========================================
         let audioCtx = null;
         let isMuted = false;
@@ -1729,15 +1743,15 @@
             const now = audioCtx.currentTime;
 
             if (type === 'snap') {
-              // Crisp bright chime chord (E5 + B5)
+              // Hợp âm ding trong trẻo E5 + B5
               const osc1 = audioCtx.createOscillator();
               const osc2 = audioCtx.createOscillator();
               const gain = audioCtx.createGain();
 
               osc1.type = 'sine';
               osc2.type = 'triangle';
-              osc1.frequency.setValueAtTime(659.25, now); // E5
-              osc2.frequency.setValueAtTime(987.77, now); // B5
+              osc1.frequency.setValueAtTime(659.25, now);
+              osc2.frequency.setValueAtTime(987.77, now);
 
               gain.gain.setValueAtTime(0.2, now);
               gain.gain.exponentialRampToValueAtTime(0.001, now + 0.22);
@@ -1751,8 +1765,8 @@
               osc1.stop(now + 0.22);
               osc2.stop(now + 0.22);
             } else if (type === 'streak') {
-              // Ascending 3-note victory arpeggio
-              const notes = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6
+              // Hợp âm rải vui mừng khi đạt streak
+              const notes = [523.25, 659.25, 783.99, 1046.50];
               notes.forEach((freq, idx) => {
                 const osc = audioCtx.createOscillator();
                 const gain = audioCtx.createGain();
@@ -1771,7 +1785,7 @@
                 osc.stop(noteTime + 0.18);
               });
             } else if (type === 'error') {
-              // Gentle low dual-tone buzz
+              // Âm báo sai trầm ấm
               const osc = audioCtx.createOscillator();
               const gain = audioCtx.createGain();
               osc.type = 'sawtooth';
@@ -1801,7 +1815,7 @@
               osc.start(now);
               osc.stop(now + 0.04);
             } else if (type === 'victory') {
-              // Grand fanfare
+              // Nhạc hiệu chiến thắng
               const notes = [440, 554.37, 659.25, 880];
               notes.forEach((f, i) => {
                 const osc = audioCtx.createOscillator();
@@ -1818,28 +1832,27 @@
               });
             }
           } catch(e) {
-            // Audio context not allowed or failed
+            // Web Audio API không khả dụng hoặc bị chặn
           }
         }
 
         // ==========================================
-        // 3. GAME STATE & VARIABLES
+        // 3. TRẠNG THÁI GAME
         // ==========================================
-        let placedElements = new Map(); // z -> slot info
+        let placedElements = new Map();
         let remainingDeck = [];
         let activeHand = [];
         let selectedHandCardZ = null;
-        let difficulty = 'beginner'; // 'beginner' | 'explorer' | 'master'
+        let difficulty = 'beginner';
         let score = 0;
         let streak = 1;
         let bestStreak = 1;
         let timerSeconds = 0;
         let timerInterval = null;
         let gameActive = false;
-        let gameStartTime = null;
         let activeFilterCategory = null;
 
-        // Bohr Model Animation Canvas
+        // Mô hình Bohr Canvas
         let bohrAnimFrame = null;
         let bohrAngle = 0;
         let inspectedElement = null;
@@ -1867,18 +1880,18 @@
         const bohrCtx = bohrCanvas.getContext('2d');
 
         // ==========================================
-        // 4. RENDERING PERIODIC TABLE BOARD
+        // 4. KẺ LƯỚI BẢNG TUẦN HOÀN 18 CỘT
         // ==========================================
         function renderPeriodicBoard() {
           periodicGridEl.innerHTML = '';
 
-          // 1. Top row corner
+          // 1. Góc tọa độ
           const corner = document.createElement('div');
           corner.className = 'corner-cell';
           corner.textContent = 'G \\ P';
           periodicGridEl.appendChild(corner);
 
-          // 2. 18 Column Headers
+          // 2. 18 cột phân nhóm
           GROUP_LABELS.forEach(grp => {
             const colHeader = document.createElement('div');
             colHeader.className = 'col-header';
@@ -1887,18 +1900,13 @@
             periodicGridEl.appendChild(colHeader);
           });
 
-          // 3. Render Period 1 (Row 1)
+          // 3. Chu kỳ 1, 2, 3
           renderPeriodRow(1);
-
-          // 4. Render Period 2 (Row 2)
           renderPeriodRow(2);
-
-          // 5. Render Period 3 (Row 3)
           renderPeriodRow(3);
         }
 
         function renderPeriodRow(periodNum) {
-          // Row Header
           const rowHeader = document.createElement('div');
           rowHeader.className = 'row-header';
           rowHeader.setAttribute('data-period', periodNum);
@@ -1906,72 +1914,70 @@
           periodicGridEl.appendChild(rowHeader);
 
           if (periodNum === 1) {
-            // Col 1: Hydrogen
+            // Cột 1: H
             periodicGridEl.appendChild(createSlotElement(1, 1));
 
-            // Col 2-17: Void spacer (spans 16 cols)
+            // Khoảng trống 16 cột
             const spacer = document.createElement('div');
             spacer.className = 'void-spacer-p1';
             spacer.innerHTML = `
               <div class="trends-bridge">
                 <div class="trend-item">
                   <span class="trend-arrow">↙</span>
-                  <span>Atomic Radius Increases</span>
+                  <span>Bán kính nguyên tử tăng</span>
                 </div>
                 <div style="font-size: 11px; font-weight: 700; color: rgba(56, 189, 248, 0.6); letter-spacing: 1px;">
-                  PERIODIC TABLE · PERIODS 1 – 3
+                  BẢNG TUẦN HOÀN · CHU KỲ 1 ĐẾN 3
                 </div>
                 <div class="trend-item">
                   <span class="trend-arrow">↗</span>
-                  <span>Electronegativity Increases</span>
+                  <span>Độ âm điện tăng</span>
                 </div>
               </div>
             `;
             periodicGridEl.appendChild(spacer);
 
-            // Col 18: Helium
+            // Cột 18: He
             periodicGridEl.appendChild(createSlotElement(1, 18));
           } else if (periodNum === 2) {
-            // Col 1: Li (Z=3)
+            // Cột 1, 2: Li, Be
             periodicGridEl.appendChild(createSlotElement(2, 1));
-            // Col 2: Be (Z=4)
             periodicGridEl.appendChild(createSlotElement(2, 2));
 
-            // Col 3-12: Void spacer (spans 10 cols)
+            // Khoảng trống 10 cột
             const spacer = document.createElement('div');
             spacer.className = 'void-spacer-p23';
             spacer.innerHTML = `
               <div style="width: 100%; border-bottom: 1px dashed rgba(255, 255, 255, 0.06); text-align: center; line-height: 0;">
                 <span style="background: var(--bg-main); padding: 0 10px; font-size: 9px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">
-                  Transition Block (d-orbitals begin in Period 4)
+                  Khối kim loại chuyển tiếp (phân lớp d bắt đầu từ Chu kỳ 4)
                 </span>
               </div>
             `;
             periodicGridEl.appendChild(spacer);
 
-            // Col 13-18: B (5), C (6), N (7), O (8), F (9), Ne (10)
+            // Cột 13-18: B, C, N, O, F, Ne
             for (let g = 13; g <= 18; g++) {
               periodicGridEl.appendChild(createSlotElement(2, g));
             }
           } else if (periodNum === 3) {
-            // Col 1: Na (Z=11)
+            // Cột 1, 2: Na, Mg
             periodicGridEl.appendChild(createSlotElement(3, 1));
-            // Col 2: Mg (Z=12)
             periodicGridEl.appendChild(createSlotElement(3, 2));
 
-            // Col 3-12: Void spacer (spans 10 cols)
+            // Khoảng trống 10 cột
             const spacer = document.createElement('div');
             spacer.className = 'void-spacer-p23';
             spacer.innerHTML = `
               <div style="width: 100%; border-bottom: 1px dashed rgba(255, 255, 255, 0.06); text-align: center; line-height: 0;">
                 <span style="background: var(--bg-main); padding: 0 10px; font-size: 9px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">
-                  3d Subshell Filled in Period 4 (Sc–Zn)
+                  Phân lớp 3d được điền ở Chu kỳ 4 (Sc–Zn)
                 </span>
               </div>
             `;
             periodicGridEl.appendChild(spacer);
 
-            // Col 13-18: Al (13), Si (14), P (15), S (16), Cl (17), Ar (18)
+            // Cột 13-18: Al, Si, P, S, Cl, Ar
             for (let g = 13; g <= 18; g++) {
               periodicGridEl.appendChild(createSlotElement(3, g));
             }
@@ -1984,23 +1990,20 @@
           slot.setAttribute('data-period', period);
           slot.setAttribute('data-group', group);
 
-          // Find which element belongs here
           const targetElem = ELEMENTS.find(e => e.period === period && e.group === group);
           if (targetElem) {
             slot.setAttribute('data-target-z', targetElem.z);
           }
 
-          // If already placed, render card inside
           if (targetElem && placedElements.has(targetElem.z)) {
             renderPlacedCardInside(slot, targetElem);
           } else {
-            // Empty placeholder tile
             const grpInfo = GROUP_LABELS.find(g => g.num === group);
             const casLabel = grpInfo ? grpInfo.cas : `G${group}`;
             
             let subhintHtml = '';
             if (difficulty === 'beginner' && targetElem) {
-              subhintHtml = `<div class="slot-subhint font-mono">${targetElem.electrons.length} shells · ${targetElem.valence}e⁻</div>`;
+              subhintHtml = `<div class="slot-subhint font-mono">${targetElem.electrons.length} lớp · ${targetElem.valence}e⁻ hóa trị</div>`;
             }
 
             slot.innerHTML = `
@@ -2009,11 +2012,11 @@
             `;
           }
 
-          // Hover events for spatial scaffolding
+          // Hiệu ứng rê chuột định vị tọa độ
           slot.addEventListener('mouseenter', () => highlightGridHeaders(period, group, true));
           slot.addEventListener('mouseleave', () => highlightGridHeaders(period, group, false));
 
-          // Drag and Drop listeners
+          // Kéo thả HTML5
           slot.addEventListener('dragover', (e) => {
             e.preventDefault();
             e.dataTransfer.dropEffect = 'move';
@@ -2035,10 +2038,9 @@
             }
           });
 
-          // Click-to-place handler
+          // Nhấp để đặt
           slot.addEventListener('click', () => {
             if (slot.classList.contains('placed')) {
-              // Open inspector for placed element
               if (targetElem) {
                 openInspectorModal(targetElem);
               }
@@ -2048,7 +2050,7 @@
             if (selectedHandCardZ !== null) {
               handleAttemptPlacement(selectedHandCardZ, period, group, slot);
             } else {
-              showHint(`Click an element card in your deck below first, then click here to place it.`, 'info');
+              showHint(`Hãy nhấp chọn một thẻ nguyên tố trong khay bài trước, sau đó nhấp vào ô này để đặt.`, 'info');
             }
           });
 
@@ -2089,13 +2091,9 @@
         }
 
         // ==========================================
-        // 5. DECK & HAND MANAGEMENT
+        // 5. QUẢN LÝ BỘ BÀI VÀ THẺ TRÊN TAY
         // ==========================================
-        function initGame(resetDifficulty = false) {
-          if (!resetDifficulty) {
-            // keep current difficulty
-          }
-
+        function initGame() {
           placedElements.clear();
           score = 0;
           streak = 1;
@@ -2103,12 +2101,11 @@
           selectedHandCardZ = null;
           timerSeconds = 0;
           gameActive = true;
-          gameStartTime = Date.now();
 
-          // Shuffle elements 1 to 18
+          // Xáo trộn ngẫu nhiên 18 nguyên tố
           remainingDeck = [...ELEMENTS].sort(() => Math.random() - 0.5);
 
-          // Draw initial 4 cards
+          // Rút 4 thẻ đầu tiên
           activeHand = remainingDeck.splice(0, 4);
 
           updateStatsUI();
@@ -2116,7 +2113,7 @@
           renderHandCards();
           startTimer();
 
-          showHint("Select an element card from your deck below and place it on the board.", "info");
+          showHint("Chọn một thẻ nguyên tố trong khay bài bên dưới và đặt vào vị trí tương ứng trên bảng tuần hoàn.", "info");
         }
 
         function renderHandCards() {
@@ -2169,19 +2166,18 @@
             // Touch Drag Support
             enableTouchDrag(card, elem.z);
 
-            // Click selection
+            // Nhấp chọn thẻ
             card.addEventListener('click', (e) => {
               e.stopPropagation();
               initAudio();
               playSound('click');
 
               if (selectedHandCardZ === elem.z) {
-                // Deselect
                 selectedHandCardZ = null;
-                showHint("Card deselected.", "info");
+                showHint("Đã bỏ chọn thẻ.", "info");
               } else {
                 selectedHandCardZ = elem.z;
-                showHint(`Selected <strong>${elem.symbol} (${elem.nameEn})</strong>. Click its slot on the Periodic Table!`, "info");
+                showHint(`Đang chọn <strong>${elem.symbol} (${elem.nameVi} · ${elem.nameEn})</strong>. Hãy nhấp vào ô tương ứng trên Bảng tuần hoàn!`, "info");
               }
               renderHandCards();
               updateSlotTargetHighlight();
@@ -2190,8 +2186,7 @@
             dockCardsEl.appendChild(card);
           });
 
-          // Update deck count indicator
-          deckRemainingTextEl.textContent = `${remainingDeck.length} in deck`;
+          deckRemainingTextEl.textContent = `${remainingDeck.length} thẻ còn lại`;
           const progressPercent = Math.round((placedElements.size / 18) * 100);
           deckProgressFillEl.style.width = `${progressPercent}%`;
         }
@@ -2203,16 +2198,20 @@
           });
         }
 
-        // Touch Drag Implementation for Mobile & Tablets
+        // Hỗ trợ cảm ứng trên điện thoại / máy tính bảng
         function enableTouchDrag(cardEl, elementZ) {
           let touchClone = null;
-          let touchStartX = 0;
-          let touchStartY = 0;
+
+          function cleanupClone() {
+            if (touchClone) {
+              touchClone.remove();
+              touchClone = null;
+            }
+            document.querySelectorAll('.slot.drag-hover').forEach(s => s.classList.remove('drag-hover'));
+          }
 
           cardEl.addEventListener('touchstart', (e) => {
             const touch = e.touches[0];
-            touchStartX = touch.clientX;
-            touchStartY = touch.clientY;
 
             touchClone = cardEl.cloneNode(true);
             touchClone.style.position = 'fixed';
@@ -2232,7 +2231,6 @@
             touchClone.style.left = `${touch.clientX - 45}px`;
             touchClone.style.top = `${touch.clientY - 55}px`;
 
-            // Highlight target slot underneath
             const elemBelow = document.elementFromPoint(touch.clientX, touch.clientY);
             const targetSlot = elemBelow ? elemBelow.closest('.slot') : null;
 
@@ -2243,16 +2241,11 @@
           }, { passive: false });
 
           cardEl.addEventListener('touchend', (e) => {
-            if (touchClone) {
-              touchClone.remove();
-              touchClone = null;
-            }
-
             const touch = e.changedTouches[0];
             const elemBelow = document.elementFromPoint(touch.clientX, touch.clientY);
             const targetSlot = elemBelow ? elemBelow.closest('.slot') : null;
 
-            document.querySelectorAll('.slot.drag-hover').forEach(s => s.classList.remove('drag-hover'));
+            cleanupClone();
 
             if (targetSlot && !targetSlot.classList.contains('placed')) {
               const p = parseInt(targetSlot.getAttribute('data-period'), 10);
@@ -2260,16 +2253,17 @@
               handleAttemptPlacement(elementZ, p, g, targetSlot);
             }
           });
+
+          cardEl.addEventListener('touchcancel', cleanupClone);
         }
 
         // ==========================================
-        // 6. GAME MECHANICS & PLACEMENT LOGIC
+        // 6. XỬ LÝ ĐẶT THẺ & KIỂM TRA TỌA ĐỘ
         // ==========================================
         function handleAttemptPlacement(elementZ, period, group, slotEl) {
           const elem = ELEMENTS.find(e => e.z === elementZ);
           if (!elem) return;
 
-          // Check if correct
           const isCorrect = (elem.period === period && elem.group === group);
 
           if (isCorrect) {
@@ -2280,30 +2274,25 @@
         }
 
         function handleCorrectPlacement(elem, slotEl) {
-          // Play sound
           playSound('snap');
           if (navigator.vibrate) {
             navigator.vibrate([40, 30, 60]);
           }
 
-          // Mark placed
           placedElements.set(elem.z, elem);
           slotEl.classList.remove('selected-target-hint');
           renderPlacedCardInside(slotEl, elem);
 
-          // Visual ripple effect
           const ripple = document.createElement('div');
           ripple.className = 'placed-ripple';
           slotEl.appendChild(ripple);
           setTimeout(() => ripple.remove(), 700);
 
-          // Score and streak calculation
           const streakMultiplier = Math.min(streak, 4);
           const earnedPoints = 100 * streakMultiplier;
           score += earnedPoints;
 
-          // Flying points popup
-          showFloatingScore(slotEl, `+${earnedPoints} pts! ${streak > 1 ? `(${streak}x Streak)` : ''}`);
+          showFloatingScore(slotEl, `+${earnedPoints} điểm! ${streak > 1 ? `(${streak}x Chuỗi)` : ''}`);
 
           streak++;
           if (streak > bestStreak) {
@@ -2314,7 +2303,6 @@
             playSound('streak');
           }
 
-          // Remove from active hand & draw replacement
           activeHand = activeHand.filter(c => c.z !== elem.z);
           if (remainingDeck.length > 0) {
             activeHand.push(remainingDeck.shift());
@@ -2325,9 +2313,8 @@
           renderHandCards();
           updateSlotTargetHighlight();
 
-          showHint(`Correct! <strong>${elem.symbol} (${elem.nameEn})</strong> successfully locked into Period ${elem.period}, Group ${elem.group}.`, "success");
+          showHint(`Chính xác! <strong>${elem.symbol} (${elem.nameVi})</strong> đã khớp vào Chu kỳ ${elem.period}, Nhóm ${elem.group} (${elem.groupCas}).`, "success");
 
-          // Check victory
           if (placedElements.size === 18) {
             handleVictory();
           }
@@ -2339,20 +2326,17 @@
             navigator.vibrate(100);
           }
 
-          // Reset streak
           streak = 1;
           updateStatsUI();
 
-          // Shake target slot
           slotEl.classList.add('shake');
           setTimeout(() => slotEl.classList.remove('shake'), 450);
 
-          // Educational contextual hint
           const grpInfo = GROUP_LABELS.find(g => g.num === elem.group);
           const casText = grpInfo ? ` (${grpInfo.cas})` : '';
 
           showHint(
-            `Incorrect! <strong>${elem.symbol} (${elem.nameVi} · ${elem.nameEn})</strong> has ${elem.protons} protons and ${elem.valence} valence electron(s). It belongs to <strong>Period ${elem.period}</strong>, <strong>Group ${elem.group}${casText}</strong>.`,
+            `Chưa đúng! <strong>${elem.symbol} (${elem.nameVi} · ${elem.nameEn})</strong> có số hiệu Z = ${elem.z} (${elem.protons} proton, ${elem.valence} electron hóa trị). Nguyên tố này thuộc <strong>Chu kỳ ${elem.period}</strong>, <strong>Nhóm ${elem.group}${casText}</strong>.`,
             "error"
           );
         }
@@ -2374,7 +2358,7 @@
         }
 
         // ==========================================
-        // 7. STATS & TIMER
+        // 7. BỘ ĐẾM THỜI GIAN & ĐIỂM SỐ
         // ==========================================
         function updateStatsUI() {
           scoreValEl.textContent = score;
@@ -2406,26 +2390,24 @@
         }
 
         // ==========================================
-        // 8. VICTORY CELEBRATION & CONFETTI
+        // 8. KHIẾN THẮNG & PHÁO HOA
         // ==========================================
         function handleVictory() {
           gameActive = false;
           clearInterval(timerInterval);
           playSound('victory');
 
-          // Time bonus
           const timeBonus = Math.max(0, 600 - timerSeconds) * 2;
           score += timeBonus;
           updateStatsUI();
 
-          // Title assignment
-          let rankTitle = "Apprentice Alchemist";
+          let rankTitle = "Tập Sự Giả Kim Thuật";
           if (score >= 2600) {
-            rankTitle = "Nobel Laureate in Chemistry";
+            rankTitle = "Bậc Thầy Hóa Học Nobel";
           } else if (score >= 2100) {
-            rankTitle = "Senior Quantum Chemist";
+            rankTitle = "Nhà Hóa Học Lượng Tử Cấp Cao";
           } else if (score >= 1700) {
-            rankTitle = "Certified Lab Researcher";
+            rankTitle = "Chuyên Viên Phòng Thí Nghiệm";
           }
 
           document.getElementById('victory-title').textContent = rankTitle;
@@ -2486,31 +2468,32 @@
         }
 
         // ==========================================
-        // 9. BOHR ATOM MODEL INSPECTOR
+        // 9. KÍNH LÚP NGUYÊN TỬ & MÔ HÌNH BOHR
         // ==========================================
         function openInspectorModal(elem) {
           inspectedElement = elem;
 
           document.getElementById('modal-elem-header').textContent = `${elem.nameVi} · ${elem.nameEn} (Z = ${elem.z})`;
           document.getElementById('modal-cat-dot').style.backgroundColor = elem.color;
-          document.getElementById('modal-elem-title').textContent = `${elem.symbol} · ${elem.nameEn} (${elem.nameVi})`;
+          document.getElementById('modal-elem-title').textContent = `${elem.symbol} · ${elem.nameVi} (${elem.nameEn})`;
           document.getElementById('modal-elem-family').textContent = elem.categoryName;
           document.getElementById('modal-elem-family').style.color = elem.color;
-          document.getElementById('modal-elem-config').textContent = `Configuration: ${elem.config}`;
+          document.getElementById('modal-elem-config').textContent = `Cấu hình e: ${elem.config}`;
           
           const shellsText = elem.electrons.map((count, idx) => {
             const shellName = ['K', 'L', 'M'][idx];
-            return `${shellName}: ${count}`;
+            return `Lớp ${shellName}: ${count}`;
           }).join(' · ');
           document.getElementById('modal-elem-shells').textContent = shellsText;
 
           document.getElementById('modal-prop-z').textContent = elem.z;
           document.getElementById('modal-prop-mass').textContent = `${elem.mass} u`;
-          document.getElementById('modal-prop-coords').textContent = `Period ${elem.period} · Group ${elem.group} (${elem.groupCas})`;
-          document.getElementById('modal-prop-valence').textContent = `${elem.valence} valence e⁻`;
+          document.getElementById('modal-prop-coords').textContent = `Chu kỳ ${elem.period} · Nhóm ${elem.group} (${elem.groupCas})`;
+          document.getElementById('modal-prop-valence').textContent = `${elem.valence} e⁻ hóa trị`;
           document.getElementById('modal-prop-state').textContent = elem.state;
           document.getElementById('modal-prop-subatomic').textContent = `${elem.protons} p⁺ · ${elem.neutrons} n⁰`;
-          document.getElementById('modal-fun-fact').textContent = `💡 Fact: ${elem.funFact}`;
+          document.getElementById('modal-fun-fact').textContent = `💡 Thực tế: ${elem.funFact}`;
+          document.getElementById('modal-nav-indicator').textContent = `${elem.z} / 18`;
 
           inspectorModalEl.classList.add('open');
           startBohrAnimation(elem);
@@ -2525,7 +2508,7 @@
             const cx = 140;
             const cy = 140;
 
-            // 1. Draw glowing nucleus
+            // 1. Hạt nhân phát sáng
             const nucGrad = bohrCtx.createRadialGradient(cx, cy, 0, cx, cy, 18);
             nucGrad.addColorStop(0, '#f8fafc');
             nucGrad.addColorStop(0.4, elem.color);
@@ -2537,18 +2520,17 @@
             bohrCtx.fill();
 
             bohrCtx.fillStyle = '#0f172a';
-            bohrCtx.font = 'bold 11px Plus Jakarta Sans';
+            bohrCtx.font = 'bold 11px system-ui, sans-serif';
             bohrCtx.textAlign = 'center';
             bohrCtx.textBaseline = 'middle';
             bohrCtx.fillText(`${elem.z}+`, cx, cy);
 
-            // 2. Draw electron shells
+            // 2. Các lớp electron K, L, M
             const shellRadii = [36, 68, 102];
             elem.electrons.forEach((electronCount, shellIdx) => {
               const r = shellRadii[shellIdx];
 
-              // Orbit circle
-              bohrCtx.strokeStyle = 'rgba(255, 255, 255, 0.15)';
+              bohrCtx.strokeStyle = 'rgba(255, 255, 255, 0.16)';
               bohrCtx.lineWidth = 1.2;
               bohrCtx.setLineDash([3, 3]);
               bohrCtx.beginPath();
@@ -2556,7 +2538,6 @@
               bohrCtx.stroke();
               bohrCtx.setLineDash([]);
 
-              // Electrons on this shell
               const speed = (shellIdx % 2 === 0 ? 1 : -1) * (0.015 / (shellIdx + 1));
               const angleOffset = bohrAngle * speed;
 
@@ -2565,7 +2546,6 @@
                 const ex = cx + r * Math.cos(theta);
                 const ey = cy + r * Math.sin(theta);
 
-                // Electron glow
                 bohrCtx.fillStyle = '#38bdf8';
                 bohrCtx.shadowColor = '#38bdf8';
                 bohrCtx.shadowBlur = 6;
@@ -2584,9 +2564,8 @@
         }
 
         // ==========================================
-        // 10. EVENT LISTENERS & SETUP
+        // 10. LẮNG NGHE SỰ KIỆN & GIAO DIỆN
         // ==========================================
-        // Family Legend Rendering & Interactive Filter
         function renderLegend() {
           familyLegendEl.innerHTML = '';
           CATEGORIES.forEach(cat => {
@@ -2642,7 +2621,7 @@
           });
         }
 
-        // Difficulty Tab Switcher
+        // Bộ chuyển độ khó
         document.querySelectorAll('.tab-btn').forEach(btn => {
           btn.addEventListener('click', () => {
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -2657,11 +2636,11 @@
 
             renderPeriodicBoard();
             renderHandCards();
-            showHint(`Switched to <strong>${difficulty.toUpperCase()}</strong> mode.`, 'info');
+            showHint(`Đã chuyển sang chế độ <strong>${btn.textContent}</strong>.`, 'info');
           });
         });
 
-        // Sound Toggle
+        // Nút âm thanh
         const soundBtn = document.getElementById('sound-btn');
         const soundIcon = document.getElementById('sound-icon');
         const soundLabel = document.getElementById('sound-label');
@@ -2669,39 +2648,37 @@
         soundBtn.addEventListener('click', () => {
           isMuted = !isMuted;
           soundIcon.textContent = isMuted ? '🔇' : '🔊';
-          soundLabel.textContent = isMuted ? 'Muted' : 'Sound';
+          soundLabel.textContent = isMuted ? 'Đã tắt' : 'Âm thanh';
           if (!isMuted) {
             playSound('click');
           }
         });
 
-        // Restart Game
+        // Nút chơi lại (an toàn cho iframe, không dùng alert/confirm gây kẹt)
         document.getElementById('restart-btn').addEventListener('click', () => {
-          if (confirm("Restart game? Your current score and progress will be reset.")) {
-            initGame();
-          }
+          initGame();
+          showHint("Đã khởi tạo ván mới! Chúc bạn chinh phục điểm cao.", "info");
         });
 
-        // Cycle Hand Button
+        // Đổi lượt / Rút lại 4 thẻ
         document.getElementById('skip-btn').addEventListener('click', () => {
           if (remainingDeck.length === 0) {
-            showHint("No remaining cards in the deck to cycle!", "info");
+            showHint("Đã hết thẻ trong kho để đổi!", "info");
             return;
           }
           initAudio();
           playSound('click');
 
-          // Return active hand back into deck and draw new 4
           remainingDeck.push(...activeHand);
           remainingDeck.sort(() => Math.random() - 0.5);
           activeHand = remainingDeck.splice(0, 4);
           selectedHandCardZ = null;
           renderHandCards();
           updateSlotTargetHighlight();
-          showHint("Cycled your hand with new elements from the deck.", "info");
+          showHint("Đã xáo trộn và rút 4 thẻ nguyên tố mới.", "info");
         });
 
-        // Instructions Modal
+        // Hướng dẫn
         document.getElementById('guide-help-btn').addEventListener('click', () => {
           instructionsModalEl.classList.add('open');
         });
@@ -2709,7 +2686,7 @@
           instructionsModalEl.classList.remove('open');
         });
 
-        // Trends Modal
+        // Quy luật
         document.getElementById('trends-btn').addEventListener('click', () => {
           trendsModalEl.classList.add('open');
         });
@@ -2717,16 +2694,30 @@
           trendsModalEl.classList.remove('open');
         });
 
-        // Inspector Modal Close
+        // Kính lúp
         document.getElementById('modal-close-btn').addEventListener('click', () => {
           inspectorModalEl.classList.remove('open');
           cancelAnimationFrame(bohrAnimFrame);
         });
 
-        // Victory Modal Buttons
+        // Điều hướng nguyên tố trước/sau trong kính lúp
+        document.getElementById('modal-prev-btn').addEventListener('click', () => {
+          if (!inspectedElement) return;
+          const prevZ = inspectedElement.z > 1 ? inspectedElement.z - 1 : 18;
+          const prevElem = ELEMENTS.find(e => e.z === prevZ);
+          if (prevElem) openInspectorModal(prevElem);
+        });
+
+        document.getElementById('modal-next-btn').addEventListener('click', () => {
+          if (!inspectedElement) return;
+          const nextZ = inspectedElement.z < 18 ? inspectedElement.z + 1 : 1;
+          const nextElem = ELEMENTS.find(e => e.z === nextZ);
+          if (nextElem) openInspectorModal(nextElem);
+        });
+
+        // Nút chiến thắng
         document.getElementById('victory-play-again-btn').addEventListener('click', () => {
           victoryModalEl.classList.remove('open');
-          // Switch to Master mode for challenge
           document.querySelector('.tab-btn[data-difficulty="master"]').click();
           initGame();
         });
@@ -2734,7 +2725,7 @@
           victoryModalEl.classList.remove('open');
         });
 
-        // Close modals on clicking outside backdrop
+        // Đóng khi click ngoài hộp thoại
         document.querySelectorAll('.modal-backdrop').forEach(modal => {
           modal.addEventListener('click', (e) => {
             if (e.target === modal) {
@@ -2744,12 +2735,12 @@
           });
         });
 
-        // Hint close
+        // Đóng gợi ý
         document.getElementById('hint-close').addEventListener('click', () => {
           hintBarEl.style.display = 'none';
         });
 
-        // Document click to deselect if clicked outside cards or slots
+        // Hủy chọn thẻ nếu nhấp chuột ra ngoài
         document.addEventListener('click', (e) => {
           if (!e.target.closest('.hand-card') && !e.target.closest('.slot') && !e.target.closest('.modal-backdrop')) {
             if (selectedHandCardZ !== null) {
@@ -2760,9 +2751,15 @@
           }
         });
 
-        // ==========================================
-        // INITIALIZE APP
-        // ==========================================
+        // Phím tắt bàn phím (Escape để đóng modal)
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') {
+            document.querySelectorAll('.modal-backdrop.open').forEach(m => m.classList.remove('open'));
+            cancelAnimationFrame(bohrAnimFrame);
+          }
+        });
+
+        // Khởi động
         renderLegend();
         initGame();
       })();
